@@ -1,1 +1,280 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use "sass:color";
+@import "variables";
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$montre-primary: mat-palette($mat-indigo);
+$montre-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$montre-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$montre-theme: mat-light-theme($montre-primary, $montre-accent, $montre-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($montre-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+
+/* CSS RESET ----------------------------------------------------------------*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input {
+    border-radius: 0;
+}
+
+/* END CSS RESET -------------------------------------------------------------*/
+
+html, body { height: 100%; }
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: "Montserrat", "Helvetica Neue", sans-serif;
+}
+
+h1 {
+    margin: 0 0 50px;
+    font-size: 48px;
+    font-weight: 200;
+}
+
+h2 {
+    margin: 12px 0;
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    
+}
+
+button {
+
+    padding: 10px 20px;
+    background-color: $secondary-button;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-family: "montserrat", sans-serif;
+    font-size: 16px;
+    outline: none;
+    
+    &:disabled {
+        opacity: 50%;
+    }
+
+    &:hover {
+        background-color: $secondary-button-hover;
+    }
+
+    &:active {
+        background-color: $secondary-button-active;
+    }
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+input[type=text] {
+        
+    padding: 7px;
+    background-color: $input-bg-color;
+    border: 0px solid black;
+    font-size: 14px;
+    font-family: "Montserrat";
+
+    &:focus {
+        background-color: $input-bg-color-active;
+        outline: none;
+    }
+
+    &.large {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+select {    
+            
+    padding: 7px;
+    appearance: none;
+    background-color: $input-bg-color;
+    border: 0px solid black;
+    border-radius: 0px;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+
+    // https://codepen.io/vkjgr/pen/VYMeXp
+    background-image:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+    background-position:
+        calc(100% - 18px) calc(1em + 0px),
+        calc(100% - 13px) calc(1em + 0px),
+        calc(100% - 2.5em) 0.5em;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+    background-repeat: no-repeat;
+
+    option {
+        padding: 10px;
+    }  
+}
+
+select.large {
+
+    padding: 10px;
+    appearance: none;
+    background-color: $input-bg-color;
+    border: 0px solid black;
+    border-radius: 0px;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+
+    // https://codepen.io/vkjgr/pen/VYMeXp
+    background-image:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+    background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px),
+        calc(100% - 2.5em) 0.5em;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1px 1.5em;
+    background-repeat: no-repeat;
+
+    option {
+        padding: 10px;
+    }  
+}
+
+
+
+
+
+
+
+.action-row {
+    margin: 100px 0 150px;
+    display: flex;
+
+    button {
+        padding: 15px 20px;
+        font-size: 20px;
+        font-weight: 300;
+        text-decoration: none;
+    }
+
+    button.action-left {
+        background-color: $secondary-button;
+        color: black;
+
+        &:hover {
+            background-color: $secondary-button-hover;
+        }
+
+        &:active {
+            background-color: $secondary-button-active;
+        }
+    }
+
+    .action-spacer {
+        flex-grow: 1;
+    }
+
+    button.action-right {
+        background-color: $action-button;
+        color: white;
+
+        &:hover {
+            background-color: $action-button-hover;
+        }
+    
+        &:active {
+            background-color: $action-button-active;
+        }
+
+        &:disabled {
+            opacity: .5;
+        }
+    }
+}

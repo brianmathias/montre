@@ -1,0 +1,353 @@
+@import "../../variables";
+
+// Container styles ---------------------------------------------
+
+.sequence-form {
+    margin-bottom: 30px;
+}
+
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.form-group {
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &.form-catalog {
+        width: 120px;
+        flex-grow: 0;
+    }
+    &.form-title {
+        flex-grow: 1;
+    }
+
+    &.form-composer {
+        width: 200px;
+        flex-grow: 0;
+    }
+
+    &.form-type {
+        width: 120px;
+        flex-grow: 0;
+    }
+
+    &.form-version {
+        flex-grow: 1;
+    }
+}
+
+.flex-container {
+    display: flex;
+}
+
+.left {
+    width: 685px;
+    flex-grow: 0;   
+}
+
+.right {
+    flex-grow: 1;
+    padding-left: 30px;
+    border-left: 1px solid $divider-color;
+}
+
+// Piston styles -------------------------------------------------
+
+.memory-level {
+
+    select {
+        width: 100px;
+        margin-top: 18px;
+        margin-bottom: 24px;
+    }
+}
+
+.piston-container {
+    width: 100%;
+    margin-left: -10px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    button {
+        margin: 8px;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        border: 0px solid black; 
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        font-family: 'montserrat', sans-serif;
+        font-weight: 300;
+        line-height: 40px;   
+        text-align: center;
+    }
+    
+    button:focus {
+        outline: none;
+    }
+
+    &.general button {
+        background-color: $general;
+    }
+
+    &.general button:hover {
+        background-color: $general-hover;
+    }
+
+    &.general button:active {
+        background-color: $general-active;
+    }
+
+    &.antiphonal button {
+        background-color: $antiphonal;
+    }
+
+    &.antiphonal button:hover {
+        background-color: $antiphonal-hover;
+    }
+
+    &.antiphonal button:active {
+        background-color: $antiphonal-active;
+    }
+
+    &.solo button {
+        background-color: $solo;
+    }
+
+    &.solo button:hover {
+        background-color: $solo-hover;
+    }
+
+    &.solo button:active {
+        background-color: $solo-active;
+    }
+
+    &.swell button {
+        background-color: $swell;
+    }
+
+    &.swell button:hover {
+        background-color: $swell-hover;
+    }
+
+    &.swell button:active {
+        background-color: $swell-active;
+    }
+
+    &.great button {
+        background-color: $great;
+    }
+
+    &.great button:hover {
+        background-color: $great-hover;
+    }
+
+    &.great button:active {
+        background-color: $great-active;
+    }
+
+    &.choir button {
+        background-color: $choir;
+    }
+
+    &.choir button:hover {
+        background-color: $choir-hover;
+    }
+
+    &.choir button:active {
+        background-color: $choir-active;
+    }
+
+    &.positiv button {
+        background-color: $positiv;
+    }
+
+    &.positiv button:hover {
+        background-color: $positiv-hover;
+    }
+
+    &.positiv button:active {
+        background-color: $positiv-active;
+    }
+
+    &.pedal button {
+        background-color: $pedal;
+    }
+
+    &.pedal button:hover {
+        background-color: $pedal-hover;
+    }
+
+    &.pedal button:active {
+        background-color: $pedal-active;
+    }
+}
+
+// Sequence styles ------------------------------------
+
+.sequence-container {
+    padding-top: 5px;
+}
+
+.sequence-step {    
+    margin: 10px 0;
+    padding: 5px 5px 5px 8px;
+    display: flex;
+    flex-grow: 0;
+    cursor: move;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 25px;
+    text-transform: uppercase;
+
+    .step {
+        width: 22px;
+    }
+
+    .level {
+        width: 23px;
+        height: 23px;
+        margin-right: 6px;
+        border: 1px solid black;
+        padding: 0px;
+        line-height: 23px;
+        text-align: center;
+    }
+
+    .division {
+        margin-right: 6px;
+    }
+
+    .piston {
+        width: 23px;
+        height: 23px;
+        border: 1px solid black;
+        border-radius: 12px;
+        line-height: 23px;
+        text-align: center;
+    }
+
+    .spacer {
+        flex-grow: 1;
+    }
+
+    .delete {
+        width: 16px;
+        margin: -5px;
+        padding: 0 10px;
+        flex-grow: 0;
+        background-color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    &.general {
+        background-color: $general;
+
+        .delete {
+            color: $general-base;
+        }
+    }
+
+    &.antiphonal {
+        background-color: $antiphonal;
+
+        .delete {
+            color: $antiphonal-base;
+        }
+    }
+
+    &.solo {
+        background-color: $solo;
+
+        .delete {
+            color: $solo-base;
+        }
+    }
+
+    &.swell {
+        background-color: $swell;
+
+        .delete {
+            color: $swell-base;
+        }
+    }
+
+    &.great {
+        background-color: $great;
+
+        .delete {
+            color: $great-base;
+        }
+    }
+
+    &.choir {
+        background-color: $choir;
+
+        .delete {
+            color: $choir-base;
+        }
+    }
+
+    &.positiv {
+        background-color: $positiv;
+
+        .delete {
+            color: $positiv-base;
+        }
+    }
+
+    &.pedal {
+        background-color: $pedal;
+
+        .delete {
+            color: $pedal-base;
+        }
+    }
+
+    &.cdk-drag-preview {
+        line-height: 35px;
+
+        .level {
+            margin-top: 5px;
+        }
+
+        .piston {
+            margin-top: 5px;
+        }
+
+        .delete {
+            padding: 6px 10px;
+        } 
+    }
+}
+
+.cdk-drag-placeholder {
+    color: transparent;
+    opacity: 50%;
+
+    .level {
+        border: 1px solid transparent;
+    }
+
+    .piston {
+        border: 1px solid transparent;
+    }
+
+    .delete {
+        background-color: transparent;
+        color: transparent !important;
+    }
+}

@@ -1,0 +1,152 @@
+@import "../../variables";
+
+.step {
+    margin: 30px 0;
+    padding: 0px;
+    display: flex;
+
+    &.based-on {
+        padding: 20px;
+        line-height: 40px;
+
+        button {
+            margin: 0 10px;
+        }
+    }
+
+    &.general {
+        border: 1px solid $general;
+
+        .step-number {
+            color: $general-base;
+            background-color: $general;
+        }
+    }
+
+    &.antiphonal {
+        border: 1px solid $antiphonal;
+
+        .step-number {
+            background-color: $antiphonal;
+            color: $antiphonal-base;
+        }
+    }
+
+    &.solo {
+        border: 1px solid $solo;
+
+        .step-number {
+            background-color: $solo;
+            color: $solo-base;
+        }
+    }
+
+    &.swell {
+        border: 1px solid $swell;
+
+        .step-number {
+            background-color: $swell;
+            color: $swell-base;
+        }
+    }
+
+    &.great {
+        border: 1px solid $great;
+
+        .step-number {
+            background-color: $great;
+            color: $great-base;
+        }
+    }
+
+    &.choir {
+        border: 1px solid $choir;
+
+        .step-number {
+            background-color: $choir;
+            color: $choir-base;
+        }
+    }
+
+    &.positiv {
+        border: 1px solid $positiv;
+
+        .step-number {
+            background-color: $positiv;
+            color: $positiv-base;
+        }
+    }
+
+    &.pedal {
+        border: 1px solid $pedal;
+
+        .step-number {
+            background-color: $pedal;
+            color: $pedal-base;
+        }
+    }
+
+    .step-number {
+        
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-grow: 0;
+        padding: 10px;
+        background-color: $solo-base;
+        text-align: center;
+        
+        .text {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .number {
+            font-size: 36px;
+        }
+    }
+
+    .editor {
+        flex-grow: 1;
+        padding: 30px;
+    }
+
+    .form-row {
+        margin-bottom: 20px;
+        display: flex;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    .form-group {
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+    
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.form-memory {
+            width: 85px;
+        }
+
+        &.form-piston {
+            width: 175px;
+        }
+        &.form-base {
+            width: 250px;
+        }
+
+        &.form-measure {
+            flex-grow: 1;
+        }
+
+        &.notes {
+            flex-grow: 1;
+        }
+    }
+}

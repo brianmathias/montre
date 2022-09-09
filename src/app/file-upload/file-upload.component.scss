@@ -1,0 +1,72 @@
+@import "../../variables";
+
+.flex-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin: 40px 0 20px;
+    font-size: 48px;
+    font-weight: 200;
+    text-align: center;
+}
+
+#fileElem {
+    display: none;
+    visibility: hidden;
+}
+
+
+.file-row {
+
+    display: flex;
+    padding: 50px 0 30px;
+
+    button.upload {
+        
+        padding: 15px 20px;
+        font-size: 20px;
+        font-weight: 300;
+        
+    }
+    
+    .selected-file {
+        width: 400px;
+        margin-left: 30px;
+        padding: 18px 12px;
+        border: 1px solid $input-bg-color;
+        font-size: 16px;
+        line-height: 16px;
+    }
+}
+
+.error {
+    height: 14px;
+    color: red;
+    font-size: 14px;
+    
+}
+
+.large {
+    width: 250px;
+}
+
+.organ-row {
+    width: 608px;
+    margin-top: 40px;
+
+    button.selected {
+        background-color: $input-bg-color-selected;
+        cursor: default;
+    }
+
+    button {
+        width: 50%;
+    }
+}
+input[type=radio] {
+    width: 50px;
+    font-size: 100px;
+}
