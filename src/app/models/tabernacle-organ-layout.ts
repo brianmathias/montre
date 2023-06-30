@@ -21,6 +21,9 @@ export class TabernacleOrganLayout extends OrganLayout {
             this.rows.push(y);
         }
 
+        // Add a little extra space for auxiliarry stop row
+        this.rows[24] += 10;
+
         //Pedal
         this.columns.push(this.drawknobMargin + (this.drawknobColumnWidth / 2) + this.spacerColumnWidth + this.drawknobColumnWidth);
         this.columns.push(this.columns[0] + this.spacerColumnWidth + this.drawknobColumnWidth);
@@ -88,17 +91,8 @@ export class TabernacleOrganLayout extends OrganLayout {
         this.labels.push({label: "CHOIR", x: this.labelColumn(19), y: this.labelRow()});
         this.labels.push({label: "POS.", x: this.columns[19], y: this.rows[14] + 2});
 
-        // Auxilliary stop columns (7 stops, centered on page)
-        let center = 792 / 2;
-        //this.auxColumns.push(center - ((this.drawknobColumnWidth + this.spacerColumnWidth) * 4));
-        //this.auxColumns.push(center - ((this.drawknobColumnWidth + this.spacerColumnWidth) * 3));
-        //this.auxColumns.push(center - ((this.drawknobColumnWidth + this.spacerColumnWidth) * 2));
-        //this.auxColumns.push(center - ((this.drawknobColumnWidth + this.spacerColumnWidth) * 1));
-        //this.auxColumns.push(center);
-        //this.auxColumns.push(center + ((this.drawknobColumnWidth + this.spacerColumnWidth) * 1));
-        //this.auxColumns.push(center + ((this.drawknobColumnWidth + this.spacerColumnWidth) * 2));
-        //this.auxColumns.push(center + ((this.drawknobColumnWidth + this.spacerColumnWidth) * 3));
 
+        // Align auxilliary stop columns with left and right ends
         this.auxColumns.push(this.columns[0]);
         this.auxColumns.push(this.columns[1]);
         this.auxColumns.push(this.columns[2]);

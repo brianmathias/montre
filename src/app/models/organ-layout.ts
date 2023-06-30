@@ -270,7 +270,7 @@ export class OrganLayout {
     public expColumns?: number[] = [];
 
     /** The number of drawknob rows. */
-    public _rowCount: number = 23;
+    public _rowCount: number = 24;
 
     /** An array containing the Y position (in points) of the organ's drawknob rows. */
     public rows: number[] = [];

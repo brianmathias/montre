@@ -49,13 +49,14 @@ export class PrintComponent implements OnInit {
   newSequence(): void {
     this.sequenceService.clearSequence();
     this.router.navigate(["build"]);
+    console.log(this.sequence);
   }
 
   newFile(): void {
     this.sequenceService.clearSequence();
     this.fileService.unloadFile();
     this.router.navigate([""]);
-    console.log(this.sequenceService.sequence);
+    console.log(this.sequence);
   }
 
   // Provides conditional CSS classes to enable division colors

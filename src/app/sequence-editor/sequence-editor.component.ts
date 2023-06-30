@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SequenceService } from '../services/sequence.service';
 import { Sequence } from '../models/sequence';
 import { Organ } from '../models/organ';
@@ -15,17 +16,24 @@ import { DivisionStylesService } from '../services/division-styles.service';
 export class SequenceEditorComponent implements OnInit {
 
   sequence: Sequence;
+  organ$: Subscription;
   organ: Organ;
   memoryLevels: number[] = [];
   pistons: Piston[] = [];
   
-  constructor(private sequenceService: SequenceService, private organService: OrganService, private divisionStylesService: DivisionStylesService) { }
+  constructor(private sequenceService: SequenceService, private organService: OrganService, private divisionStylesService: DivisionStylesService) {
+    this.organ$ = this.organService.selectedOrgan$.subscribe(val => this.organ = this.organService.organ);
+  }
 
   ngOnInit(): void {
     this.organ = this.organService.organ;
     this.pistons = this.organService.pistons;
     this.memoryLevels = this.organService.memoryLevels;
     this.sequence = this.sequenceService.sequence;
+  }
+
+  ngOnDestroy(): void {
+    this.organ$.unsubscribe();
   }
 
   setBases(method: number): void {

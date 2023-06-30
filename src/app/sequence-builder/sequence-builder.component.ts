@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { Organ } from '../models/organ';
@@ -16,20 +17,26 @@ import { DivisionStylesService } from '../services/division-styles.service';
 })
 export class SequenceBuilderComponent implements OnInit {
 
+  organ$: Subscription;
   organ: Organ;
   sequence: Sequence;
   memoryLevels: number[];
   memoryLevel: number = 1;
   pistons: Piston[];
-
+ 
   
   constructor(private sequenceService: SequenceService, private organService: OrganService, private divisionStylesService: DivisionStylesService, private vs: VirtuosoService) {}
 
   ngOnInit(): void {
+    this.organ$ = this.organService.selectedOrgan$.subscribe(val => this.organ = this.organService.organ);
     this.sequence = this.sequenceService.sequence; 
     this.organ = this.organService.organ;
     this.memoryLevels  = this.organService.memoryLevels;
     this.pistons = this.organService.pistons;
+  }
+
+  ngOnDestroy(): void {
+    this.organ$.unsubscribe();
   }
 
   addStep(memoryLevel: number, piston: number): void {
