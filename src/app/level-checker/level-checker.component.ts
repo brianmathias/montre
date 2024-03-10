@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { TallySheet } from '../models/tally-sheet';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { OrganService } from '../services/organ.service';
 import { VirtuosoService } from '../services/virtuoso.service';
+
+import { TallySheet } from '../models/tally-sheet';
 import { Piston } from '../models/piston';
 
 @Component({
@@ -9,7 +12,10 @@ import { Piston } from '../models/piston';
   templateUrl: './level-checker.component.html',
   styleUrls: ['./level-checker.component.scss']
 })
-export class LevelCheckerComponent implements OnInit {
+export class LevelCheckerComponent implements OnDestroy {
+
+  /** Subscription to OrganService.selected organ (so organ can be updated if it changes when new file uploaded).*/
+  selectedOrgan$: Subscription;
 
   /** The currently selected memory level. */
   memoryLevel: number;
@@ -29,29 +35,44 @@ export class LevelCheckerComponent implements OnInit {
   constructor(private organService: OrganService, private virtuosoService: VirtuosoService) { }
 
   ngOnInit(): void {
-
-    // Load information from currently selected organ
-    this.memoryLevels = this.organService.memoryLevels;
-    this.pistons = this.organService.pistons;
-    this.tallySheet = this.organService.tallySheet;
-    this.memoryLevel = 1;
+    
+    this.selectedOrgan$ = this.organService.selectedOrgan$.subscribe(value => {
+      this.setOrgan();
+    });
+    
+    this.memoryLevel = 1;  
     this.selectLevel(this.memoryLevel)
   }
 
+  ngOnDestroy(): void {
+    this.selectedOrgan$.unsubscribe();
+  }
+
+  /** Function called when the memory level dropdown changes. */
   selectLevel(level: number): void {
 
     this.pistonState = [];
+
+    // Loop through every piston of memory level to determine whether it has been set or is clear.
     for(let piston of this.pistons) {
       let state = this.virtuosoService.getPistonStatus(this.memoryLevel, piston.id);
       this.pistonState.push(state);
     }
   }
 
+  setOrgan(): void {
+    this.memoryLevels = this.organService.memoryLevels;
+    this.pistons = this.organService.pistons;
+    this.tallySheet = this.organService.tallySheet;
+  }
+
+  /** Takes a piston id and retrieves the piston number. */
   getNumber(pistonID: number): string {
     if (pistonID >= 0) { return this.pistons[pistonID].number.toString(); }
     else { return ""; }
   }
 
+  /** Provides the template text for each piston cell, depending on whether it is set or clear. */
   getState(pistonID: number): string {
     if (pistonID === -1) { return ""; }
     else {
@@ -60,6 +81,7 @@ export class LevelCheckerComponent implements OnInit {
     }
   }
 
+  /** Provides the CSS class that should be applied to each piston cell, depending on whether it is set or clear. */
   getClass(pistonID: number): string {
     if (pistonID === -1) { return "disabled"; }
     else {
@@ -67,5 +89,4 @@ export class LevelCheckerComponent implements OnInit {
       else { return "clear"; }
     }
   }
- 
 }

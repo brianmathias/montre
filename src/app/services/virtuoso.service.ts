@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -18,17 +18,26 @@ import { FileService } from '../services/file.service';
 @Injectable({
   providedIn: 'root'
 })
-export class VirtuosoService {
+export class VirtuosoService implements OnInit, OnDestroy {
  
   private _config: OrganConfig;
   
   private _organSubscription: Subscription;
 
-  constructor(private organService: OrganService, private fileService: FileService) {
-    
+  constructor(private organService: OrganService, private fileService: FileService) { 
+
     this._organSubscription = this.organService.selectedOrgan$.subscribe(val => {
       this._config = this.organService.organConfig;
-    })
+    });
+  }
+
+  // Isn't firing correctly - can services use this?
+  ngOnInit(): void {
+    
+  }
+
+  ngOnDestroy(): void {
+    this._organSubscription.unsubscribe();
   }
 
   /**
@@ -198,5 +207,4 @@ export class VirtuosoService {
     let values = this.fileService.getValues(offset, length);
     return values;
   }
-
 }

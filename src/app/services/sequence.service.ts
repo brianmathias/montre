@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Subscription } from 'rxjs';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
+
+import { OrganService } from './organ.service';
+
 import { Sequence } from '../models/sequence';
 import { Piston } from '../models/piston';
-import { OrganService } from './organ.service';
-import { Organs } from '../models/organs';
 
 /**
  * This service holds the sequence data that is used by the SequenceBuilder, SequenceEditor,
@@ -14,34 +15,44 @@ import { Organs } from '../models/organs';
 @Injectable({
   providedIn: 'root'
 })
-export class SequenceService {
+export class SequenceService implements OnDestroy {
 
-  private _env = environment;
-
+  /** Local copy of pistons from OrganService. */
   private _pistons: Piston[];
 
-  private _organSubscription: Subscription;
-
-  private _organ: Organs;
+  /** Subscription to OrganService.selectedOrgan$. */
+  private organSubscriptionS: Subscription;
 
   /** The current sequence. */
   public sequence: Sequence;
   
-  
   constructor(private organService: OrganService) {
 
-    this._pistons = this.organService.pistons;
     this.sequence = new Sequence();
 
-    this._organSubscription = organService.selectedOrgan$.subscribe(val => {
-      this._organ = val;
-      this.sequence.setOrgan(val)
+    this.organSubscriptionS = organService.selectedOrgan$.subscribe(val => {
+      this._setOrgan();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.organSubscriptionS.unsubscribe();
+  }
+
+  /**
+   * Sets the organ that the sequence is associated with. Since OrganService already knows
+   * which organ has been selected, no parameters are necessary.
+   */
+  private _setOrgan(): void {
+    this.sequence.organ = this.organService.organ.organ;
+    this.sequence.organString = this.organService.organ.code;
+    this._pistons = this.organService.pistons;
   }
 
   /** Clears the current sequence and creates a new one. */
   public clearSequence(): void {
     this.sequence = new Sequence();
+    this._setOrgan();
   }
  
   /**

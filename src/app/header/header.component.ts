@@ -10,17 +10,19 @@ import { FileService } from '../services/file.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
+  /** Boolean to determine whether certain header items should be disabled if a file has not been uploaded. Updated by fileLoaded$ observable. */
   show: boolean = false;
-  subscription: Subscription;
+
+  /** Subscription to FileService.fileLoaded$ observable.  */
+  fileLoaded$: Subscription;
 
   constructor(private fileService: FileService) { }
 
   ngOnInit(): void {
-    this.subscription = this.fileService.fileLoaded$.subscribe(val => this.show = val);
+    this.fileLoaded$ = this.fileService.fileLoaded$.subscribe(val => this.show = val);
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.fileLoaded$.unsubscribe();
   }
-
 }

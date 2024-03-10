@@ -13,7 +13,7 @@ export class Sequence {
         composer: string,
 
         /** The Tabernacle Choir catalog number of the composition. */
-        catalogNo: string // Choir catalog number
+        catalogNo: string
     }
     
     /** The type of sequence (choral or organ). Used for alternate filename formats. */
@@ -21,6 +21,9 @@ export class Sequence {
 
     /** The version of the composition (i.e., "Organ w/ Orchestra", "Organ Only", etc.) */
     version: string;
+
+    /** The version code (used for OneDrive filing). Examples: O, O4, OI, OO. */
+    versionCode: string;
 
     /** The organ associated with the current sequence. */
     organ: Organs;
@@ -32,22 +35,24 @@ export class Sequence {
     steps: SequenceStep[]
 
     constructor() {
+
         this.composition = {
             title: "",
             composer: "",
             catalogNo: ""
         };
+
         this.type = "Choral";
         this.version = "";
         this.steps = [];
 
     }
 
+    /*
     setOrgan(organ: Organs): void {
         this.organ = organ;
-        if (this.organ === Organs.Tabernacle) { this.organString = "TAB"; }
-        else if (this.organ === Organs.ConferenceCenter) { this.organString = "CC"; }
     }
+    */
 }
 
 /**

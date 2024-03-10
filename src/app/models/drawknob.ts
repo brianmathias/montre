@@ -1,7 +1,7 @@
 import { DrawknobState } from './drawknob-state';
 
 /**
- * NOTE: No longer being used?
+ * NOTE: No longer being used. Scrapped in favor of DrawknobState enum.
  * 
  * Object representing a drawknob as part of a sequence step with the following three properties:
  * 

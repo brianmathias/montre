@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { FileService } from '../services/file.service';
@@ -12,7 +12,7 @@ import { Organs } from '../models/organs';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class FileUploadComponent implements OnDestroy {
+export class FileUploadComponent implements OnInit, OnDestroy {
 
   /** The File object for the user-supplied file. */
   file: File | null = null;
@@ -38,15 +38,16 @@ export class FileUploadComponent implements OnDestroy {
   /** The currently selected organ. */
   organ: Organs;
 
+  /** Subscription to the OrganService.selectedOrgan$ observable. */
   organ$: Subscription
 
-  constructor(private organService: OrganService, private fileService: FileService, private sequenceService: SequenceService) {
-    
+  constructor(private organService: OrganService, private fileService: FileService, private sequenceService: SequenceService) { }
+
+  ngOnInit():void {
     this.fileLoaded$ = this.fileService.fileLoaded$.subscribe(val => this.fileLoaded = val);
     this.fileName$ = this.fileService.fileName$.subscribe(val => this.fileName = val);
     this.fileError$ = this.fileService.fileError$.subscribe(val => this.fileError = val);
     this.organ$ = this.organService.selectedOrgan$.subscribe(val => this.organ = val);
-    
   }
 
   ngOnDestroy(): void {
@@ -75,5 +76,4 @@ export class FileUploadComponent implements OnDestroy {
   setOrgan(organ: Organs): void {
     this.organService.setOrgan(organ);
   }
-
 }

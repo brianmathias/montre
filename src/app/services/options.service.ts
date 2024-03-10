@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { PrintSequence } from '../models/sequence';
-//import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -142,7 +141,7 @@ export class OptionsService {
   public getFilename(type: string, catalog: string, title: string, composer: string, version: string, organ: string): string {
     
     this._sequence.type = type;
-    this._sequence.catalog = catalog;
+    this._sequence.catalog = catalog.padStart(4, "0");
     this._sequence.title = title;
     this._sequence.composer = composer;
     this._sequence.version = version;
@@ -221,11 +220,6 @@ export class OptionsService {
     let str = this._replaceFields(template);
     return str;
   }
-
-
-
-
-
 
   /** Adds the sequence passed into the function for the history on the options screen and saves
    * it to localStorage.

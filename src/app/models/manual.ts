@@ -1,19 +1,18 @@
 import { Piston } from './piston';
 
-/**
- * Object that represents a single manual with the following properties:
- * 
- * - name: string - The name of the division with which the manual is associated.
- * - orderNumber: number - Integer reflecting the order of the manuals, zero-indexed from
- * top to bottom
- * - orderNumeral: string - The roman numeral of the manual (i.e., Great = "II").
- * - pistons: Piston[] - An array of Piston objects containing the division's pistons.
- */
+/** Object that represents a single manual with the following properties: */
 export interface Manual {
 
+    /** The name of the manual/division. */
     name: string;
+
+    /** The zero-based index of the manual, starting at the lowest (Pedal = 0, Choir = 1, etc.) */
     orderNumber: number;
+
+    /**  Roman numeral representing the postiion of the manual. */
     orderNumeral: string;
+
+    /** The pistons associated with the manual. */
     pistons: Piston[];
     
 }

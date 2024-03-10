@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+
 import { Organ, OrganObject } from '../models/organ';
 import { Organs } from '../models/organs';
 import { OrganLayout } from '../models/organ-layout';
@@ -127,7 +128,10 @@ export class OrganService {
         this.ConferenceCenterOrgan.pistons.push({id: piston.id, division: piston.division, number: piston.number});
       }
     }
+
+    // Set default instrument
     this.setOrgan(Organs.Tabernacle);
+    
   } // End constructor
 
   /**

@@ -1,9 +1,12 @@
 import { Organ } from "./organ";
+import { Organs } from "./organs";
 
 /** A JSON representation of the Conference Center organ. */
 export const ConferenceCenterOrgan: Organ = {
 
     venue: "Conference Center",
+    organ: Organs.ConferenceCenter,
+    code: "CC",
     builder: "Schoenstein",
     memoryLevels: 50,
     manuals: [

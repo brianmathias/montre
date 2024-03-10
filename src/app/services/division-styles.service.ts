@@ -11,7 +11,6 @@ interface DivisionStyleObject {
   pedal?: boolean;
 }
 
-
 /**
  * Service that provides components an easy way to apply CSS classes based on divisions 
  * of the organ. 

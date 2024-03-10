@@ -185,12 +185,12 @@ export class PDFService {
       this.o = this.organService.TabernacleOrgan.organ;
       this.ol = this.organService.TabernacleOrgan.layout;
       this.p = this.organService.TabernacleOrgan.pistons;
-      this.os = "TAB"; 
+      this.os = this.organService.TabernacleOrgan.organ.code;
     } else if (organ === Organs.ConferenceCenter ) { 
       this.o = this.organService.ConferenceCenterOrgan.organ;
       this.ol = this.organService.ConferenceCenterOrgan.layout;
       this.p = this.organService.ConferenceCenterOrgan.pistons;
-      this.os = "CC"; 
+      this.os = this.organService.ConferenceCenterOrgan.organ.code; 
     }
   }
 
@@ -476,6 +476,7 @@ export class PDFService {
     }
     
     let stopIndex = 0;
+    
     for(let stop of this.o.stops) {
       
       let drawknobType: DrawknobType;
@@ -591,13 +592,6 @@ export class PDFService {
       stopIndex++;
     }
   }
-
-
-
-
-
-
-
 
   /** Draws the vertical dividing lines between divisions. */
   private _drawDivisionDividers(): void {

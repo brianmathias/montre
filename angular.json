@@ -112,5 +112,8 @@
       }
     }
   },
-  "defaultProject": "montre"
+  "defaultProject": "montre",
+  "cli": {
+    "analytics": false
+  }
 }

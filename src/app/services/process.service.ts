@@ -119,7 +119,10 @@ export class ProcessService {
 
 
   /**
-   * Compares drawknobs of each sequence step to determine Add/Remove states.
+   * Compares drawknobs of each sequence step to determine Add/Remove states. If a base piston is specified,
+   * the two pistons will be compared, and on/off states will be changed to add/remove where appropriate.
+   * 
+   * @param sequence {PrintSequence} - A PrintSequence for which steps should be compared.
    */ 
   private _compareDrawknobs(sequence: PrintSequence): PrintSequence {
     
@@ -139,12 +142,12 @@ export class ProcessService {
         // Loop through drawknobs
         for(let j = 0; j < step.drawknobs.length; j++){
 
-          // If previous step is Off or Remove, change On to Add
+          // If base step is Off or Remove, change On to Add
           if (step.drawknobs[j] === DrawknobState.On && (base.drawknobs[j] === DrawknobState.Off || base.drawknobs[j] === DrawknobState.Remove)){
             step.drawknobs[j] = DrawknobState.Add;
           }
 
-          // If previous step is On or Add, change Off to Remove
+          // If base step is On or Add, change Off to Remove
           else if (step.drawknobs[j] === DrawknobState.Off && (base.drawknobs[j] === DrawknobState.On || base.drawknobs[j] === DrawknobState.Add)){
             step.drawknobs[j] = DrawknobState.Remove;
           }

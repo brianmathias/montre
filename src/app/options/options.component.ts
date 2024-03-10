@@ -72,8 +72,10 @@ export class OptionsComponent {
     version: "Organ Solo"
   }
 
-  constructor(private options: OptionsService, private fileService: FileService, private processService: ProcessService, private pdfService: PDFService) {
-    
+  constructor(private options: OptionsService, private fileService: FileService, private processService: ProcessService, private pdfService: PDFService) { }
+
+  ngOnInit(): void {
+
     this.filenameTemplateChoral = this.options.getFilenameTemplateChoral();
     this.filenameExampleChoral = this.options.getFilename(this.choralExample.type, this.choralExample.catalog, this.choralExample.title, this.choralExample.composer, this.choralExample.version, this.choralExample.organ);
     
@@ -87,9 +89,7 @@ export class OptionsComponent {
     this.titleExampleOrgan = this.options.getTitle(this.organExample.type, this.organExample.catalog, this.organExample.title, this.organExample.composer, this.organExample.version, this.organExample.organ);
 
     this.sequenceHistory = this.options.sequenceHistory;
-  }
-
-  ngOnInit(): void {
+    
     this.fileStatus$ = this.fileService.fileLoaded$.subscribe(val => this.fileStatus = val);
   }
 
@@ -154,6 +154,4 @@ export class OptionsComponent {
   printTutti(num: number): void {
     this.processService.tutti(num);
   }
-  
-
 }

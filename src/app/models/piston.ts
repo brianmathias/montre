@@ -1,5 +1,4 @@
 /** An object representing a piston. */
-
 export interface Piston {
 
     /** The id number of the piston. */
